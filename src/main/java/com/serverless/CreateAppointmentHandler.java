@@ -6,14 +6,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CreateAppointmentHandler implements RequestHandler<ApiGatewayRequest,ApiGatewayResponse> {
-    private appointmentdao bookdao = new appointmentdao();
+    private appointmentdao appointmentdao = new appointmentdao();
     @Override
     public ApiGatewayResponse handleRequest(ApiGatewayRequest input, Context context) {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            appointmentmodel book = mapper.readValue((String) input.getBody(), appointmentmodel.class);
-            bookdao.insert(book);
-            return ApiGatewayResponse.builder().setStatusCode(200).setObjectBody(book).build();
+            appointmentmodel appointment = mapper.readValue((String) input.getBody(), appointmentmodel.class);
+            appointmentdao.insert(appointment);
+            return ApiGatewayResponse.builder().setStatusCode(200).setObjectBody(appointment).build();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
