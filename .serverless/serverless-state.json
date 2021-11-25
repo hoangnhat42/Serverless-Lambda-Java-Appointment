@@ -1,8 +1,8 @@
 {
   "service": {
-    "service": "bookshopservicever2",
+    "service": "appointmentservice",
     "serviceObject": {
-      "name": "bookshopservicever2"
+      "name": "appointmentservice"
     },
     "provider": {
       "name": "aws",
@@ -23,7 +23,7 @@
             "Resource": [
               {
                 "Fn::GetAtt": [
-                  "BookshopBooks",
+                  "appointment",
                   "Arn"
                 ]
               }
@@ -110,31 +110,31 @@
           "HelloLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/bookshopservicever2-dev-hello"
+              "LogGroupName": "/aws/lambda/appointmentservice-dev-hello"
             }
           },
-          "CreateBookLogGroup": {
+          "CreateAppointmentLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/bookshopservicever2-dev-createBook"
+              "LogGroupName": "/aws/lambda/appointmentservice-dev-createAppointment"
             }
           },
-          "GetBookLogGroup": {
+          "GetAppointmentLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/bookshopservicever2-dev-getBook"
+              "LogGroupName": "/aws/lambda/appointmentservice-dev-getAppointment"
             }
           },
-          "DeleteBookLogGroup": {
+          "DeleteAppointmentLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/bookshopservicever2-dev-deleteBook"
+              "LogGroupName": "/aws/lambda/appointmentservice-dev-deleteAppointment"
             }
           },
-          "UpdateBookLogGroup": {
+          "UpdateAppointmentLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/bookshopservicever2-dev-updateBook"
+              "LogGroupName": "/aws/lambda/appointmentservice-dev-updateAppointment"
             }
           },
           "IamRoleLambdaExecution": {
@@ -162,7 +162,7 @@
                     "Fn::Join": [
                       "-",
                       [
-                        "bookshopservicever2",
+                        "appointmentservice",
                         "dev",
                         "lambda"
                       ]
@@ -179,7 +179,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/bookshopservicever2-dev*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/appointmentservice-dev*:*"
                           }
                         ]
                       },
@@ -190,7 +190,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/bookshopservicever2-dev*:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/appointmentservice-dev*:*:*"
                           }
                         ]
                       }
@@ -203,7 +203,7 @@
                 "Fn::Join": [
                   "-",
                   [
-                    "bookshopservicever2",
+                    "appointmentservice",
                     "dev",
                     {
                       "Ref": "AWS::Region"
@@ -254,25 +254,25 @@
                           },
                           {
                             "Fn::GetAtt": [
-                              "CreateBookLogGroup",
+                              "CreateAppointmentLogGroup",
                               "Arn"
                             ]
                           },
                           {
                             "Fn::GetAtt": [
-                              "GetBookLogGroup",
+                              "GetAppointmentLogGroup",
                               "Arn"
                             ]
                           },
                           {
                             "Fn::GetAtt": [
-                              "DeleteBookLogGroup",
+                              "DeleteAppointmentLogGroup",
                               "Arn"
                             ]
                           },
                           {
                             "Fn::GetAtt": [
-                              "UpdateBookLogGroup",
+                              "UpdateAppointmentLogGroup",
                               "Arn"
                             ]
                           }
@@ -291,11 +291,11 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/build/distributions/hello.zip"
+                "S3Key": "serverless/appointmentservice/dev/1637797270683-2021-11-24T23:41:10.683Z/build/distributions/hello.zip"
               },
               "Handler": "com.serverless.Handler",
               "Runtime": "java8",
-              "FunctionName": "bookshopservicever2-dev-hello",
+              "FunctionName": "appointmentservice-dev-hello",
               "MemorySize": 1024,
               "Timeout": 6,
               "Role": {
@@ -309,18 +309,18 @@
               "HelloLogGroup"
             ]
           },
-          "CreateBookLambdaFunction": {
+          "CreateAppointmentLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/build/distributions/hello.zip"
+                "S3Key": "serverless/appointmentservice/dev/1637797270683-2021-11-24T23:41:10.683Z/build/distributions/hello.zip"
               },
-              "Handler": "com.serverless.CreateBookHandler",
+              "Handler": "com.serverless.CreateAppointmentHandler",
               "Runtime": "java8",
-              "FunctionName": "bookshopservicever2-dev-createBook",
+              "FunctionName": "appointmentservice-dev-createAppointment",
               "MemorySize": 1024,
               "Timeout": 6,
               "Role": {
@@ -331,21 +331,21 @@
               }
             },
             "DependsOn": [
-              "CreateBookLogGroup"
+              "CreateAppointmentLogGroup"
             ]
           },
-          "GetBookLambdaFunction": {
+          "GetAppointmentLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/build/distributions/hello.zip"
+                "S3Key": "serverless/appointmentservice/dev/1637797270683-2021-11-24T23:41:10.683Z/build/distributions/hello.zip"
               },
-              "Handler": "com.serverless.GetBookHandler",
+              "Handler": "com.serverless.GetAppointmentHandler",
               "Runtime": "java8",
-              "FunctionName": "bookshopservicever2-dev-getBook",
+              "FunctionName": "appointmentservice-dev-getAppointment",
               "MemorySize": 1024,
               "Timeout": 6,
               "Role": {
@@ -356,21 +356,21 @@
               }
             },
             "DependsOn": [
-              "GetBookLogGroup"
+              "GetAppointmentLogGroup"
             ]
           },
-          "DeleteBookLambdaFunction": {
+          "DeleteAppointmentLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/build/distributions/hello.zip"
+                "S3Key": "serverless/appointmentservice/dev/1637797270683-2021-11-24T23:41:10.683Z/build/distributions/hello.zip"
               },
-              "Handler": "com.serverless.DeleteBookHandler",
+              "Handler": "com.serverless.DeleteAppointmentHandler",
               "Runtime": "java8",
-              "FunctionName": "bookshopservicever2-dev-deleteBook",
+              "FunctionName": "appointmentservice-dev-deleteAppointment",
               "MemorySize": 1024,
               "Timeout": 6,
               "Role": {
@@ -381,21 +381,21 @@
               }
             },
             "DependsOn": [
-              "DeleteBookLogGroup"
+              "DeleteAppointmentLogGroup"
             ]
           },
-          "UpdateBookLambdaFunction": {
+          "UpdateAppointmentLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/build/distributions/hello.zip"
+                "S3Key": "serverless/appointmentservice/dev/1637797270683-2021-11-24T23:41:10.683Z/build/distributions/hello.zip"
               },
-              "Handler": "com.serverless.UpdateBookHandler",
+              "Handler": "com.serverless.UpdateAppointmentHandler",
               "Runtime": "java8",
-              "FunctionName": "bookshopservicever2-dev-updateBook",
+              "FunctionName": "appointmentservice-dev-updateAppointment",
               "MemorySize": 1024,
               "Timeout": 6,
               "Role": {
@@ -406,63 +406,63 @@
               }
             },
             "DependsOn": [
-              "UpdateBookLogGroup"
+              "UpdateAppointmentLogGroup"
             ]
           },
-          "HelloLambdaVersionfVGsEZihvNmVo0PWdIkG9cxhE3Wmp7cHTbAL0bA8": {
+          "CreateAppointmentLambdaVersionOdA4LapedgKI7T2WjOvJxReADfh68H62CvppbZugo": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CreateAppointmentLambdaFunction"
+              },
+              "CodeSha256": "RzeRGet0XqPIyTU/WZju7m4LOisktLcmhxCM6SmEW7c="
+            }
+          },
+          "UpdateAppointmentLambdaVersionquyibVIurAMm1k15fI0XFobAKG0PjeIstMYvrFD9Y": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UpdateAppointmentLambdaFunction"
+              },
+              "CodeSha256": "RzeRGet0XqPIyTU/WZju7m4LOisktLcmhxCM6SmEW7c="
+            }
+          },
+          "HelloLambdaVersionAP70uJfxSyaYA6geVcy12QkLdL1EzYIf0Xaih2w2uE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "ULMawsR1IlTceY0xgYu8QI7Z0pxUB99OrbHA8GgZwik="
+              "CodeSha256": "RzeRGet0XqPIyTU/WZju7m4LOisktLcmhxCM6SmEW7c="
             }
           },
-          "CreateBookLambdaVersionOqAnIkSCSHcuICYSzMioWfxJKJ1cE6DJNR04pLY3ZRU": {
+          "GetAppointmentLambdaVersion7DX4NxIVobOc24xqbpFZLf1grdJ9B2n7QTFCtTDZg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "CreateBookLambdaFunction"
+                "Ref": "GetAppointmentLambdaFunction"
               },
-              "CodeSha256": "ULMawsR1IlTceY0xgYu8QI7Z0pxUB99OrbHA8GgZwik="
+              "CodeSha256": "RzeRGet0XqPIyTU/WZju7m4LOisktLcmhxCM6SmEW7c="
             }
           },
-          "GetBookLambdaVersionswrVP8TG3kVRDODjgcue9Q7XDRaXfVrCqgBvrBjvBwc": {
+          "DeleteAppointmentLambdaVersionhgyczhJV4eJA2CMEOy7bf3UPx431lTIkPYXGNFFix0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "GetBookLambdaFunction"
+                "Ref": "DeleteAppointmentLambdaFunction"
               },
-              "CodeSha256": "ULMawsR1IlTceY0xgYu8QI7Z0pxUB99OrbHA8GgZwik="
-            }
-          },
-          "DeleteBookLambdaVersionDHjZEfJMG4BvbK7g2Pf2l3jt1cTlGoYNJRUfiVuRbw": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "DeleteBookLambdaFunction"
-              },
-              "CodeSha256": "ULMawsR1IlTceY0xgYu8QI7Z0pxUB99OrbHA8GgZwik="
-            }
-          },
-          "UpdateBookLambdaVersionzmw90lLsFeYYJhgHh7OD10ug9FJ3BeAYm2VO9e5Gw": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "UpdateBookLambdaFunction"
-              },
-              "CodeSha256": "ULMawsR1IlTceY0xgYu8QI7Z0pxUB99OrbHA8GgZwik="
+              "CodeSha256": "RzeRGet0XqPIyTU/WZju7m4LOisktLcmhxCM6SmEW7c="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
-              "Name": "dev-bookshopservicever2",
+              "Name": "dev-appointmentservice",
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -471,7 +471,7 @@
               "Policy": ""
             }
           },
-          "ApiGatewayResourceBook": {
+          "ApiGatewayResourceAppointment": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
@@ -480,17 +480,17 @@
                   "RootResourceId"
                 ]
               },
-              "PathPart": "book",
+              "PathPart": "appointment",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayResourceBookIdVar": {
+          "ApiGatewayResourceAppointmentIdVar": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
-                "Ref": "ApiGatewayResourceBook"
+                "Ref": "ApiGatewayResourceAppointment"
               },
               "PathPart": "{id}",
               "RestApiId": {
@@ -498,13 +498,13 @@
               }
             }
           },
-          "ApiGatewayMethodBookPost": {
+          "ApiGatewayMethodAppointmentPost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "POST",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceBook"
+                "Ref": "ApiGatewayResourceAppointment"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -529,7 +529,7 @@
                       ":lambda:path/2015-03-31/functions/",
                       {
                         "Fn::GetAtt": [
-                          "CreateBookLambdaFunction",
+                          "CreateAppointmentLambdaFunction",
                           "Arn"
                         ]
                       },
@@ -541,16 +541,16 @@
               "MethodResponses": []
             },
             "DependsOn": [
-              "CreateBookLambdaPermissionApiGateway"
+              "CreateAppointmentLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayMethodBookGet": {
+          "ApiGatewayMethodAppointmentGet": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "GET",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceBook"
+                "Ref": "ApiGatewayResourceAppointment"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -575,7 +575,7 @@
                       ":lambda:path/2015-03-31/functions/",
                       {
                         "Fn::GetAtt": [
-                          "GetBookLambdaFunction",
+                          "GetAppointmentLambdaFunction",
                           "Arn"
                         ]
                       },
@@ -587,16 +587,16 @@
               "MethodResponses": []
             },
             "DependsOn": [
-              "GetBookLambdaPermissionApiGateway"
+              "GetAppointmentLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayMethodBookIdVarDelete": {
+          "ApiGatewayMethodAppointmentIdVarDelete": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "DELETE",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceBookIdVar"
+                "Ref": "ApiGatewayResourceAppointmentIdVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -621,7 +621,7 @@
                       ":lambda:path/2015-03-31/functions/",
                       {
                         "Fn::GetAtt": [
-                          "DeleteBookLambdaFunction",
+                          "DeleteAppointmentLambdaFunction",
                           "Arn"
                         ]
                       },
@@ -633,16 +633,16 @@
               "MethodResponses": []
             },
             "DependsOn": [
-              "DeleteBookLambdaPermissionApiGateway"
+              "DeleteAppointmentLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayMethodBookPut": {
+          "ApiGatewayMethodAppointmentPut": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "PUT",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceBook"
+                "Ref": "ApiGatewayResourceAppointment"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -667,7 +667,7 @@
                       ":lambda:path/2015-03-31/functions/",
                       {
                         "Fn::GetAtt": [
-                          "UpdateBookLambdaFunction",
+                          "UpdateAppointmentLambdaFunction",
                           "Arn"
                         ]
                       },
@@ -679,10 +679,10 @@
               "MethodResponses": []
             },
             "DependsOn": [
-              "UpdateBookLambdaPermissionApiGateway"
+              "UpdateAppointmentLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1637748570927": {
+          "ApiGatewayDeployment1637797260544": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -691,18 +691,18 @@
               "StageName": "dev"
             },
             "DependsOn": [
-              "ApiGatewayMethodBookPost",
-              "ApiGatewayMethodBookGet",
-              "ApiGatewayMethodBookIdVarDelete",
-              "ApiGatewayMethodBookPut"
+              "ApiGatewayMethodAppointmentPost",
+              "ApiGatewayMethodAppointmentGet",
+              "ApiGatewayMethodAppointmentIdVarDelete",
+              "ApiGatewayMethodAppointmentPut"
             ]
           },
-          "CreateBookLambdaPermissionApiGateway": {
+          "CreateAppointmentLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "CreateBookLambdaFunction",
+                  "CreateAppointmentLambdaFunction",
                   "Arn"
                 ]
               },
@@ -734,12 +734,12 @@
               }
             }
           },
-          "GetBookLambdaPermissionApiGateway": {
+          "GetAppointmentLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "GetBookLambdaFunction",
+                  "GetAppointmentLambdaFunction",
                   "Arn"
                 ]
               },
@@ -771,12 +771,12 @@
               }
             }
           },
-          "DeleteBookLambdaPermissionApiGateway": {
+          "DeleteAppointmentLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "DeleteBookLambdaFunction",
+                  "DeleteAppointmentLambdaFunction",
                   "Arn"
                 ]
               },
@@ -808,12 +808,12 @@
               }
             }
           },
-          "UpdateBookLambdaPermissionApiGateway": {
+          "UpdateAppointmentLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "UpdateBookLambdaFunction",
+                  "UpdateAppointmentLambdaFunction",
                   "Arn"
                 ]
               },
@@ -848,7 +848,7 @@
           "ApiGatewayLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/api-gateway/bookshopservicever2-dev"
+              "LogGroupName": "/aws/api-gateway/appointmentservice-dev"
             }
           },
           "CustomApiGatewayAccountCloudWatchRole": {
@@ -889,7 +889,7 @@
                       "-",
                       [
                         "dev",
-                        "bookshopservicever2",
+                        "appointmentservice",
                         "custom-resources-lambda"
                       ]
                     ]
@@ -954,9 +954,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z/custom-resources.zip"
+                "S3Key": "serverless/appointmentservice/dev/1637797270683-2021-11-24T23:41:10.683Z/custom-resources.zip"
               },
-              "FunctionName": "bookshopservicever2-dev-custom-resource-apigw-cw-role",
+              "FunctionName": "appointmentservice-dev-custom-resource-apigw-cw-role",
               "Handler": "apiGatewayCloudWatchRole/handler.handler",
               "MemorySize": 1024,
               "Runtime": "nodejs12.x",
@@ -972,10 +972,10 @@
               "IamRoleCustomResourcesLambdaExecution"
             ]
           },
-          "BookshopBooks": {
+          "appointment": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
-              "TableName": "Bookshop-Books",
+              "TableName": "Appointment",
               "AttributeDefinitions": [
                 {
                   "AttributeName": "id",
@@ -997,57 +997,57 @@
           "CWLSubFilterHelloLogGroupUsEast1": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#GwcYkTP6NYXhXDmlRn#bookshopservicever2#dev",
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#WnwT6QsWyyPmlnF5Fj#appointmentservice#dev",
               "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
               "LogGroupName": {
                 "Ref": "HelloLogGroup"
               }
             }
           },
-          "CWLSubFilterCreateBookLogGroupUsEast1": {
+          "CWLSubFilterCreateAppointmentLogGroupUsEast1": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#GwcYkTP6NYXhXDmlRn#bookshopservicever2#dev",
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#WnwT6QsWyyPmlnF5Fj#appointmentservice#dev",
               "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
               "LogGroupName": {
-                "Ref": "CreateBookLogGroup"
+                "Ref": "CreateAppointmentLogGroup"
               }
             }
           },
-          "CWLSubFilterGetBookLogGroupUsEast1": {
+          "CWLSubFilterGetAppointmentLogGroupUsEast1": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#GwcYkTP6NYXhXDmlRn#bookshopservicever2#dev",
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#WnwT6QsWyyPmlnF5Fj#appointmentservice#dev",
               "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
               "LogGroupName": {
-                "Ref": "GetBookLogGroup"
+                "Ref": "GetAppointmentLogGroup"
               }
             }
           },
-          "CWLSubFilterDeleteBookLogGroupUsEast1": {
+          "CWLSubFilterDeleteAppointmentLogGroupUsEast1": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#GwcYkTP6NYXhXDmlRn#bookshopservicever2#dev",
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#WnwT6QsWyyPmlnF5Fj#appointmentservice#dev",
               "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
               "LogGroupName": {
-                "Ref": "DeleteBookLogGroup"
+                "Ref": "DeleteAppointmentLogGroup"
               }
             }
           },
-          "CWLSubFilterUpdateBookLogGroupUsEast1": {
+          "CWLSubFilterUpdateAppointmentLogGroupUsEast1": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#GwcYkTP6NYXhXDmlRn#bookshopservicever2#dev",
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#WnwT6QsWyyPmlnF5Fj#appointmentservice#dev",
               "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
               "LogGroupName": {
-                "Ref": "UpdateBookLogGroup"
+                "Ref": "UpdateAppointmentLogGroup"
               }
             }
           },
           "CWLSubFilterApiGatewayLogGroupUsEast1": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#GwcYkTP6NYXhXDmlRn#bookshopservicever2#dev",
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:15fe1ee3-f726-4895-9fa1-266fbf002dea#WnwT6QsWyyPmlnF5Fj#appointmentservice#dev",
               "FilterPattern": "\"SLS_ACCESS_LOG\"",
               "LogGroupName": {
                 "Ref": "ApiGatewayLogGroup"
@@ -1061,7 +1061,7 @@
               "Ref": "ServerlessDeploymentBucket"
             },
             "Export": {
-              "Name": "sls-bookshopservicever2-dev-ServerlessDeploymentBucketName"
+              "Name": "sls-appointmentservice-dev-ServerlessDeploymentBucketName"
             }
           },
           "EnterpriseLogAccessIamRole": {
@@ -1072,52 +1072,52 @@
               ]
             },
             "Export": {
-              "Name": "sls-bookshopservicever2-dev-EnterpriseLogAccessIamRole"
+              "Name": "sls-appointmentservice-dev-EnterpriseLogAccessIamRole"
+            }
+          },
+          "CreateAppointmentLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CreateAppointmentLambdaVersionOdA4LapedgKI7T2WjOvJxReADfh68H62CvppbZugo"
+            },
+            "Export": {
+              "Name": "sls-appointmentservice-dev-CreateAppointmentLambdaFunctionQualifiedArn"
+            }
+          },
+          "UpdateAppointmentLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UpdateAppointmentLambdaVersionquyibVIurAMm1k15fI0XFobAKG0PjeIstMYvrFD9Y"
+            },
+            "Export": {
+              "Name": "sls-appointmentservice-dev-UpdateAppointmentLambdaFunctionQualifiedArn"
             }
           },
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersionfVGsEZihvNmVo0PWdIkG9cxhE3Wmp7cHTbAL0bA8"
+              "Ref": "HelloLambdaVersionAP70uJfxSyaYA6geVcy12QkLdL1EzYIf0Xaih2w2uE"
             },
             "Export": {
-              "Name": "sls-bookshopservicever2-dev-HelloLambdaFunctionQualifiedArn"
+              "Name": "sls-appointmentservice-dev-HelloLambdaFunctionQualifiedArn"
             }
           },
-          "CreateBookLambdaFunctionQualifiedArn": {
+          "GetAppointmentLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateBookLambdaVersionOqAnIkSCSHcuICYSzMioWfxJKJ1cE6DJNR04pLY3ZRU"
+              "Ref": "GetAppointmentLambdaVersion7DX4NxIVobOc24xqbpFZLf1grdJ9B2n7QTFCtTDZg"
             },
             "Export": {
-              "Name": "sls-bookshopservicever2-dev-CreateBookLambdaFunctionQualifiedArn"
+              "Name": "sls-appointmentservice-dev-GetAppointmentLambdaFunctionQualifiedArn"
             }
           },
-          "GetBookLambdaFunctionQualifiedArn": {
+          "DeleteAppointmentLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetBookLambdaVersionswrVP8TG3kVRDODjgcue9Q7XDRaXfVrCqgBvrBjvBwc"
+              "Ref": "DeleteAppointmentLambdaVersionhgyczhJV4eJA2CMEOy7bf3UPx431lTIkPYXGNFFix0"
             },
             "Export": {
-              "Name": "sls-bookshopservicever2-dev-GetBookLambdaFunctionQualifiedArn"
-            }
-          },
-          "DeleteBookLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "DeleteBookLambdaVersionDHjZEfJMG4BvbK7g2Pf2l3jt1cTlGoYNJRUfiVuRbw"
-            },
-            "Export": {
-              "Name": "sls-bookshopservicever2-dev-DeleteBookLambdaFunctionQualifiedArn"
-            }
-          },
-          "UpdateBookLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "UpdateBookLambdaVersionzmw90lLsFeYYJhgHh7OD10ug9FJ3BeAYm2VO9e5Gw"
-            },
-            "Export": {
-              "Name": "sls-bookshopservicever2-dev-UpdateBookLambdaFunctionQualifiedArn"
+              "Name": "sls-appointmentservice-dev-DeleteAppointmentLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -1143,7 +1143,7 @@
               ]
             },
             "Export": {
-              "Name": "sls-bookshopservicever2-dev-ServiceEndpoint"
+              "Name": "sls-appointmentservice-dev-ServiceEndpoint"
             }
           }
         }
@@ -1245,97 +1245,97 @@
       "hello": {
         "handler": "com.serverless.Handler",
         "events": [],
-        "name": "bookshopservicever2-dev-hello",
+        "name": "appointmentservice-dev-hello",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "java8",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersionfVGsEZihvNmVo0PWdIkG9cxhE3Wmp7cHTbAL0bA8"
+        "versionLogicalId": "HelloLambdaVersionAP70uJfxSyaYA6geVcy12QkLdL1EzYIf0Xaih2w2uE"
       },
-      "createBook": {
-        "handler": "com.serverless.CreateBookHandler",
+      "createAppointment": {
+        "handler": "com.serverless.CreateAppointmentHandler",
         "events": [
           {
             "http": {
-              "path": "book",
+              "path": "appointment",
               "method": "post",
               "integration": "AWS_PROXY"
             }
           }
         ],
-        "name": "bookshopservicever2-dev-createBook",
+        "name": "appointmentservice-dev-createAppointment",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "java8",
         "vpc": {},
-        "versionLogicalId": "CreateBookLambdaVersionOqAnIkSCSHcuICYSzMioWfxJKJ1cE6DJNR04pLY3ZRU"
+        "versionLogicalId": "CreateAppointmentLambdaVersionOdA4LapedgKI7T2WjOvJxReADfh68H62CvppbZugo"
       },
-      "getBook": {
-        "handler": "com.serverless.GetBookHandler",
+      "getAppointment": {
+        "handler": "com.serverless.GetAppointmentHandler",
         "events": [
           {
             "http": {
-              "path": "book",
+              "path": "appointment",
               "method": "get",
               "integration": "AWS_PROXY"
             }
           }
         ],
-        "name": "bookshopservicever2-dev-getBook",
+        "name": "appointmentservice-dev-getAppointment",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "java8",
         "vpc": {},
-        "versionLogicalId": "GetBookLambdaVersionswrVP8TG3kVRDODjgcue9Q7XDRaXfVrCqgBvrBjvBwc"
+        "versionLogicalId": "GetAppointmentLambdaVersion7DX4NxIVobOc24xqbpFZLf1grdJ9B2n7QTFCtTDZg"
       },
-      "deleteBook": {
-        "handler": "com.serverless.DeleteBookHandler",
+      "deleteAppointment": {
+        "handler": "com.serverless.DeleteAppointmentHandler",
         "events": [
           {
             "http": {
-              "path": "book/{id}",
+              "path": "appointment/{id}",
               "method": "delete",
               "integration": "AWS_PROXY"
             }
           }
         ],
-        "name": "bookshopservicever2-dev-deleteBook",
+        "name": "appointmentservice-dev-deleteAppointment",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "java8",
         "vpc": {},
-        "versionLogicalId": "DeleteBookLambdaVersionDHjZEfJMG4BvbK7g2Pf2l3jt1cTlGoYNJRUfiVuRbw"
+        "versionLogicalId": "DeleteAppointmentLambdaVersionhgyczhJV4eJA2CMEOy7bf3UPx431lTIkPYXGNFFix0"
       },
-      "updateBook": {
-        "handler": "com.serverless.UpdateBookHandler",
+      "updateAppointment": {
+        "handler": "com.serverless.UpdateAppointmentHandler",
         "events": [
           {
             "http": {
-              "path": "book",
+              "path": "appointment",
               "method": "put",
               "integration": "AWS_PROXY"
             }
           }
         ],
-        "name": "bookshopservicever2-dev-updateBook",
+        "name": "appointmentservice-dev-updateAppointment",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "java8",
         "vpc": {},
-        "versionLogicalId": "UpdateBookLambdaVersionzmw90lLsFeYYJhgHh7OD10ug9FJ3BeAYm2VO9e5Gw"
+        "versionLogicalId": "UpdateAppointmentLambdaVersionquyibVIurAMm1k15fI0XFobAKG0PjeIstMYvrFD9Y"
       }
     },
     "resources": {
       "Resources": {
-        "BookshopBooks": {
+        "appointment": {
           "Type": "AWS::DynamoDB::Table",
           "Properties": {
-            "TableName": "Bookshop-Books",
+            "TableName": "Appointment",
             "AttributeDefinitions": [
               {
                 "AttributeName": "id",
@@ -1363,7 +1363,7 @@
       "service": {
         "$ref": "$[\"service\"][\"serviceObject\"]"
       },
-      "app": "bookshopver2",
+      "app": "appointment",
       "org": "hoangnhat42",
       "frameworkVersion": "2",
       "provider": {
@@ -1378,7 +1378,7 @@
           "s_*.js",
           "serverless_sdk/**"
         ],
-        "artifactDirectoryName": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z"
+        "artifactDirectoryName": "serverless/appointmentservice/dev/1637797270683-2021-11-24T23:41:10.683Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -1387,16 +1387,16 @@
         "$ref": "$[\"service\"][\"resources\"]"
       }
     },
-    "app": "bookshopver2",
+    "app": "appointment",
     "org": "hoangnhat42",
     "layers": {},
     "isDashboardMonitoringPreconfigured": true,
     "isDashboardAppPreconfigured": true,
     "orgUid": "15fe1ee3-f726-4895-9fa1-266fbf002dea",
-    "appUid": "GwcYkTP6NYXhXDmlRn"
+    "appUid": "WnwT6QsWyyPmlnF5Fj"
   },
   "package": {
-    "artifactDirectoryName": "serverless/bookshopservicever2/dev/1637748580783-2021-11-24T10:09:40.783Z",
+    "artifactDirectoryName": "serverless/appointmentservice/dev/1637797270683-2021-11-24T23:41:10.683Z",
     "artifact": "build/distributions/hello.zip"
   }
 }
