@@ -36,31 +36,35 @@ functions:
       - http:
           path: /appointment
           method: post
+          cors: true
   getAppointment:
     handler: com.serverless.GetAppointmentHandler
     events:
       - http:
           path: /appointment
           method: get
+          cors: true
   deleteAppointment:
     handler: com.serverless.DeleteAppointmentHandler
     events:
       - http:
           path: /appointment/{id}
           method: delete
+          cors: true
   updateAppointment:
     handler: com.serverless.UpdateAppointmentHandler
     events:
       - http:
           path: /appointment
           method: put
+          cors: true
 
 resources:
   Resources:
     appointment:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: Appointment
+        TableName: Bookshop-Appointments
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S

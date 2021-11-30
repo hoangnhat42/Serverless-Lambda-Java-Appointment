@@ -2,7 +2,7 @@ package com.serverless;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
-@DynamoDBTable(tableName = "Appointment")
+@DynamoDBTable(tableName = "Bookshop-Appointments")
 @DynamoDBDocument
 public class appointmentmodel {
     private String id;
